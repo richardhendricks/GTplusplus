@@ -15,6 +15,7 @@ import gtPlusPlus.core.item.base.rods.BaseItemRod;
 import gtPlusPlus.core.item.base.rods.BaseItemRodLong;
 import gtPlusPlus.core.item.base.rotors.BaseItemRotor;
 import gtPlusPlus.core.item.base.screws.BaseItemScrew;
+import gtPlusPlus.core.material.nuclear.NUCLIDE;
 import gtPlusPlus.core.material.state.MaterialState;
 import gtPlusPlus.core.util.Utils;
 import gtPlusPlus.core.util.item.ItemUtils;
@@ -50,7 +51,7 @@ public class MaterialGenerator {
 			sRadiation = matInfo.vRadioationLevel;
 		}
 
-		if (matInfo.getState() == MaterialState.SOLID){		
+		if (matInfo.getState() == MaterialState.SOLID || matInfo == NUCLIDE.LITHIUM7){		
 			if (generateEverything == true){		
 				if (sRadiation >= 1){
 					Item temp;
@@ -130,17 +131,19 @@ public class MaterialGenerator {
 			sRadiation = matInfo.vRadioationLevel;
 		}	
 
-		Item temp;
-		Block tempBlock;
+		if (matInfo.getState() == MaterialState.SOLID){	
+			Item temp;
+			Block tempBlock;
 
-		tempBlock = new BlockBaseModular(unlocalizedName, materialName,BlockTypes.STANDARD, Colour);
-		temp = new BaseItemIngot(matInfo);
-		temp = new BaseItemDust("itemDust"+unlocalizedName, materialName, matInfo, Colour, "Dust", 3, sRadiation);
-		temp = new BaseItemDust("itemDustTiny"+unlocalizedName, materialName, matInfo, Colour, "Tiny", 2, sRadiation);
-		temp = new BaseItemDust("itemDustSmall"+unlocalizedName, materialName, matInfo, Colour, "Small", 1, sRadiation);
-		temp = new BaseItemNugget(matInfo);
-		temp = new BaseItemPlate(matInfo);
-		temp = new BaseItemPlateDouble(matInfo);
+			tempBlock = new BlockBaseModular(unlocalizedName, materialName,BlockTypes.STANDARD, Colour);
+			temp = new BaseItemIngot(matInfo);
+			temp = new BaseItemDust("itemDust"+unlocalizedName, materialName, matInfo, Colour, "Dust", 3, sRadiation);
+			temp = new BaseItemDust("itemDustTiny"+unlocalizedName, materialName, matInfo, Colour, "Tiny", 2, sRadiation);
+			temp = new BaseItemDust("itemDustSmall"+unlocalizedName, materialName, matInfo, Colour, "Small", 1, sRadiation);
+			temp = new BaseItemNugget(matInfo);
+			temp = new BaseItemPlate(matInfo);
+			temp = new BaseItemPlateDouble(matInfo);
+		}
 
 		RecipeGen_Plates.generateRecipes(matInfo);
 		RecipeGen_Extruder.generateRecipes(matInfo);

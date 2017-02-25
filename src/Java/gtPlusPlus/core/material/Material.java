@@ -3,6 +3,8 @@ package gtPlusPlus.core.material;
 import static gregtech.api.enums.GT_Values.M;
 import gregtech.api.enums.*;
 import gtPlusPlus.core.item.base.cell.BaseItemCell;
+import gtPlusPlus.core.material.state.ItemSets;
+import gtPlusPlus.core.material.state.ItemSets.MaterialSet;
 import gtPlusPlus.core.material.state.MaterialState;
 import gtPlusPlus.core.util.Utils;
 import gtPlusPlus.core.util.fluid.FluidUtils;
@@ -24,6 +26,7 @@ public class Material {
 	private final String localizedName;
 	
 	private final MaterialState materialState;
+	public final MaterialSet materialSet;
 
 	private final Fluid vMoltenFluid;
 	private final Fluid vPlasma;
@@ -221,6 +224,8 @@ public class Material {
 		}
 
 		this.vPlasma = generatePlasma();
+		
+		this.materialSet = calculateMaterialSetToUse();
 
 		//dataVar = MathUtils.generateSingularRandomHexValue();
 
@@ -243,6 +248,35 @@ public class Material {
 		Utils.LOG_INFO("Mass: "+vMass+"/units");
 		Utils.LOG_INFO("Melting Point: "+meltingPointC+"C.");
 		Utils.LOG_INFO("Boiling Point: "+boilingPointC+"C.");
+		
+		//Should generate my items.
+		ItemSets.generateItemsFromMaterialSet(this);
+		
+	}
+
+	//An easily expandable material set calculator.
+	private MaterialSet calculateMaterialSetToUse() {
+		if (this.localizedName.toLowerCase().contains("lithium")){
+			return MaterialSet.LITHIUM7;
+		}
+		else if (this.vRadioationLevel != 0){
+			return MaterialSet.RADIOACTIVE;
+		}
+		else if (materialState == MaterialState.SOLID){
+			return MaterialSet.STANDARD;
+		}
+		else if (materialState == MaterialState.LIQUID){
+			return MaterialSet.FLUID;
+		}
+		else if (materialState == MaterialState.GAS){
+			return MaterialSet.GAS;
+		}
+		else if (materialState == MaterialState.PLASMA){
+			return MaterialSet.NONE;
+		}
+		else {
+			return MaterialSet.NONE;
+		}
 	}
 
 	public final String getLocalizedName(){
