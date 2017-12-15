@@ -9,8 +9,8 @@ import java.util.Map;
 import java.util.Random;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import gtPlusPlus.api.analytics.SegmentAnalytics;
-import gtPlusPlus.api.analytics.SegmentHelper;
+//import gtPlusPlus.api.analytics.SegmentAnalytics;
+//import gtPlusPlus.api.analytics.SegmentHelper;
 import gtPlusPlus.core.item.ModItems;
 import gtPlusPlus.core.lib.CORE;
 import gtPlusPlus.core.lib.LoadedMods;

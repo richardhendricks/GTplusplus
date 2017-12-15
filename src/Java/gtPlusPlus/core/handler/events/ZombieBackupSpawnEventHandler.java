@@ -7,7 +7,7 @@ import org.apache.commons.lang3.reflect.FieldUtils;
 import cpw.mods.fml.common.eventhandler.Event.Result;
 import cpw.mods.fml.common.eventhandler.EventPriority;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import gtPlusPlus.api.analytics.SegmentHelper;
+//import gtPlusPlus.api.analytics.SegmentHelper;
 import gtPlusPlus.core.util.Utils;
 import net.minecraftforge.event.entity.living.ZombieEvent;
 
@@ -30,7 +30,7 @@ public class ZombieBackupSpawnEventHandler {
 			}
 			catch(Throwable t){}
 			if (event.attacker != null){
-				SegmentHelper.getInstance().trackUser(event.attacker.getUniqueID().toString(), "Zombie Backup");			
+//				SegmentHelper.getInstance().trackUser(event.attacker.getUniqueID().toString(), "Zombie Backup");			
 			}
 			Utils.LOG_WARNING("[Zombie] ZombieEvent.SummonAidEvent.");
 			event.setResult(Result.DENY);

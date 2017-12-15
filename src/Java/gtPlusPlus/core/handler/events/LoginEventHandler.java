@@ -4,8 +4,8 @@ import java.util.*;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent;
-import gtPlusPlus.api.analytics.SegmentAnalytics;
-import gtPlusPlus.api.analytics.SegmentHelper;
+//import gtPlusPlus.api.analytics.SegmentAnalytics;
+//import gtPlusPlus.api.analytics.SegmentHelper;
 import gtPlusPlus.core.lib.CORE;
 import gtPlusPlus.core.lib.LoadedMods;
 import gtPlusPlus.core.proxy.ClientProxy;
@@ -35,10 +35,10 @@ public class LoginEventHandler {
 		}	
 
 		try {			
-			new SegmentAnalytics(event.player);			
+//			new SegmentAnalytics(event.player);			
 		}
 		catch (Throwable t){
-			SegmentAnalytics.LOG("Failed to create Analytics submission during log in process.");
+//			SegmentAnalytics.LOG("Failed to create Analytics submission during log in process.");
 		}
 
 		try {

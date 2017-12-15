@@ -16,8 +16,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 import gregtech.api.util.GT_Recipe;
 import gregtech.api.util.GT_Recipe.GT_Recipe_Map;
 import gregtech.api.util.Recipe_GT.Gregtech_Recipe_Map;
-import gtPlusPlus.api.analytics.SegmentAnalytics;
-import gtPlusPlus.api.analytics.SegmentHelper;
+//import gtPlusPlus.api.analytics.SegmentAnalytics;
+//import gtPlusPlus.api.analytics.SegmentHelper;
 import gtPlusPlus.core.block.ModBlocks;
 import gtPlusPlus.core.commands.CommandMath;
 import gtPlusPlus.core.common.CommonProxy;
@@ -150,15 +150,6 @@ public class GTplusplus implements ActionListener {
 	@Mod.EventHandler
 	public void serverStopping(final FMLServerStoppingEvent event) {
 		//Flush all data to Server at the end of the day.
-		if (SegmentAnalytics.sAnalyticsMasterList.size() > 0){
-		int i=0;
-			for (SegmentAnalytics sa : SegmentAnalytics.sAnalyticsMasterList.values()){
-				sa.flushDataFinal();
-				SegmentAnalytics.LOG("Cleaned up Analytics Data for player "+sa.mLocalName+".");
-				i++;
-			}
-		}
-		
 	}
 
 	@Override
@@ -183,11 +174,11 @@ public class GTplusplus implements ActionListener {
 
 
 	private static final void initAnalytics(){
-		SegmentAnalytics.isEnabled = CORE.ConfigSwitches.enableUpdateChecker;
-		if (PlayerUtils.isPlayerAlkalus()){
-			SegmentAnalytics.isEnabled = true;
-		}
-		
-		new SegmentHelper();
+//		SegmentAnalytics.isEnabled = CORE.ConfigSwitches.enableUpdateChecker;
+//		if (PlayerUtils.isPlayerAlkalus()){
+//			SegmentAnalytics.isEnabled = true;
+//		}
+//		
+//		new SegmentHelper();
 	}
 }
